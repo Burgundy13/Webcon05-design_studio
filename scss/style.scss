@@ -1,0 +1,356 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Lato:wght@300;400;700&display=swap");
+
+/*****VARIABLES*****/
+
+$primary: #7c57b4;
+$secondary: #f1c50e;
+$lightGray: #fdf9f6;
+$white: #fff;
+$bodyFont: "Lato", sans-serif;
+$headings: "Anton", sans-serif;
+$fontSize: 16px;
+$transition: 0.4s ease;
+$padding: 70px 0;
+
+/*****MIXINS*****/
+
+@mixin flex($justify, $align, $direction) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  flex-direction: $direction;
+}
+@mixin bgImg($bg-position, $bg-size, $bg-repeat, $height) {
+  background-position: $bg-position;
+  background-size: $bg-size;
+  background-repeat: $bg-repeat;
+  height: $height;
+}
+@mixin btn {
+  padding: 15px 30px;
+  background: $primary;
+  color: $white;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  border: none;
+  margin-top: 20px;
+  &:hover {
+    cursor: pointer;
+    background: $secondary;
+    color: $primary;
+    transition: $transition;
+  }
+}
+
+/*****BASIC STYLES*****/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: $bodyFont;
+  font-size: $fontSize;
+  line-height: 1.7;
+  background: $lightGray;
+  color: darken($primary, 20%);
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: $primary;
+}
+a {
+  text-decoration: none;
+  &:hover {
+    transition: $transition;
+  }
+}
+ul {
+  list-style: none;
+}
+.container {
+  width: 90%;
+  margin: auto;
+  @media (max-width: 768px) {
+    width: 95%;
+  }
+}
+.headings {
+  font-size: 3rem;
+  &::after {
+    display: block;
+    content: "";
+    height: 3px;
+    width: 50px;
+    background: $primary;
+  }
+}
+.headers {
+  background: $secondary;
+  text-align: center;
+  padding: 10px 0;
+  h1 {
+    font-size: 2rem;
+    text-shadow: 1px 1px $white;
+  }
+  p {
+    color: $primary;
+    font-size: 1.3rem;
+  }
+}
+
+/*****NAV*****/
+
+nav {
+  background: $primary;
+  padding: 5px 0;
+  .container {
+    @include flex(space-between, center, row);
+    @media (max-width: 768px) {
+      @include flex(space-between, center, column);
+    }
+    .logo {
+      font-family: $headings;
+      color: $lightGray;
+      font-size: 2rem;
+      letter-spacing: 2px;
+      &:hover {
+        color: $secondary;
+      }
+    }
+    ul {
+      @include flex(center, center, row);
+      li {
+        margin-left: 60px;
+        a {
+          color: $lightGray;
+          text-transform: uppercase;
+          &:hover {
+            color: $secondary;
+          }
+        }
+      }
+    }
+  }
+}
+/*****FOOTER*****/
+
+footer {
+  padding: $padding;
+  background: $primary;
+  .container {
+    @include flex(space-between, flex-start, row);
+    flex-wrap: wrap;
+    color: $white;
+    article:nth-child(1) {
+      flex: 0 0 63%;
+      @media (max-width: 768px) {
+        flex: 0 0 100%;
+      }
+    }
+    article:nth-child(2) {
+      flex: 0 0 14%;
+      @media (max-width: 768px) {
+        flex: 0 0 100%;
+      }
+      a {
+        color: $white;
+        i {
+          color: $secondary;
+        }
+      }
+    }
+    article:nth-child(3) {
+      flex: 0 0 19%;
+      @media (max-width: 768px) {
+        flex: 0 0 100%;
+      }
+      ul {
+        li {
+          display: inline-block;
+          a {
+            color: $secondary;
+            margin-right: 10px;
+            font-size: 2rem;
+          }
+        }
+      }
+    }
+    h3 {
+      font-size: 2rem;
+      padding-bottom: 20px;
+      color: $white;
+    }
+  }
+}
+
+/*****HEADER.HOME*****/
+.headerHome {
+  background-image: url(../img/header.jpg);
+  @include bgImg(center, cover, no-repeat, 80vh);
+  @media (max-width: 768px) {
+    @include bgImg(center, cover, no-repeat, 60vh);
+  }
+}
+
+/*****INTRO*****/
+
+.intro {
+  width: 50%;
+  margin: auto;
+  padding: 30px 50px;
+  background: $primary;
+  margin-top: -100px;
+  text-align: center;
+  line-height: 1.2;
+  @media (max-width: 768px) {
+    width: 80%;
+  }
+  h1 {
+    color: $secondary;
+    font-size: 8rem;
+    font-family: $headings;
+    text-shadow: 3px 3px darken($primary, 20%);
+    margin-top: -110px;
+    @media (max-width: 768px) {
+      font-size: 4rem;
+      margin-top: -70px;
+    }
+  }
+  h3 {
+    color: $lightGray;
+    font-size: 2.5rem;
+  }
+  p {
+    font-style: italic;
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: $lightGray;
+  }
+}
+/*****SERVICES*****/
+
+.services {
+  padding: $padding;
+  p {
+    padding: 20px 0;
+  }
+  div {
+    @include flex(space-between, flex-start, row);
+    height: 50vh;
+    @media (max-width: 768px) {
+      @include flex(space-between, flex-start, column);
+      height: auto;
+    }
+    article {
+      flex: 0 0 30%;
+      padding: 30px;
+      i {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+      }
+    }
+    article:nth-child(1) {
+      background: $primary;
+      color: $white;
+      h3 {
+        color: $white;
+      }
+      a {
+        color: $white;
+      }
+    }
+    article:nth-child(2) {
+      background: $secondary;
+      color: $primary;
+      align-self: center;
+      h3 {
+        color: $primary;
+      }
+    }
+    article:nth-child(3) {
+      background: $white;
+      align-self: flex-end;
+      a {
+        color: $primary;
+      }
+    }
+  }
+}
+/*****TEAM*****/
+
+.team {
+  padding: $padding;
+  @include flex(space-between, center, row);
+  flex-wrap: wrap;
+  article:first-child {
+    flex: 0 0 48%;
+    @media (max-width: 768px) {
+      flex: 0 0 100%;
+      margin-bottom: 40px;
+    }
+    p {
+      padding: 20px 0;
+    }
+    button {
+      @include btn;
+    }
+  }
+  article:last-child {
+    flex: 0 0 48%;
+    @media (max-width: 768px) {
+      flex: 0 0 100%;
+    }
+    @include flex(space-between, center, row);
+    flex-wrap: wrap;
+    div {
+      flex: 0 0 50%;
+      img {
+        width: 80%;
+        border-radius: 50%;
+        margin-bottom: 40px;
+        box-shadow: 0 0 10px gray;
+      }
+    }
+  }
+}
+
+/*****PROJECTS*****/
+
+.projects {
+  padding: $padding;
+  .container {
+    @include flex(space-between, center, row);
+    flex-wrap: wrap;
+    article:first-child {
+      flex: 0 0 48%;
+      @media (max-width: 768px) {
+        flex: 0 0 100%;
+        margin-bottom: 40px;
+      }
+      p {
+        padding-top: 20px;
+      }
+    }
+    article:last-child {
+      flex: 0 0 48%;
+      @media (max-width: 768px) {
+        flex: 0 0 100%;
+      }
+      img {
+        width: 100%;
+        box-shadow: 0 0 30px gray;
+      }
+    }
+  }
+}
+
+/*****SLIDER*****/
+
+.slider {
+  background: $secondary;
+}
